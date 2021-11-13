@@ -9,12 +9,12 @@
     <string name="q2_choice_4">Printer</string>
     <string name="question_3">Which is a popular PC processor manufacturer in the US?</string>
     <string name="question_4">What is your favorite OS?</string>
-    <string name="question_5">Wired family of tech to connect PCs:</string>
+    <string name="question_5">Wired family of technologies to connect computers:</string>
     <string name="q3_choice_1">AMD</string>
     <string name="q3_choice_2">VIA</string>
     <string name="q3_choice_3">Fairchild</string>
     <string name="q1_answer_field">Enter Manufacturer Here</string>
     <string name="q3_answer_field">Enter Operating System here</string>
-    <string name="q5_answer_field">Enter tech. name here</string>
+    <string name="q5_answer_field">Enter technology name here</string>
     <string name="submit">Submit</string>
 </resources>
