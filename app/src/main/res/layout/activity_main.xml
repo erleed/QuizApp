@@ -23,7 +23,8 @@
     <TextView
         android:id="@+id/result"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="12dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -111,24 +112,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="@string/q3_choice_1"
-                        android:onClick="eval_question_3" />
+                        android:text="@string/q3_choice_1"/>
 
                     <RadioButton
                         android:id="@+id/question_3_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="@string/q3_choice_2"
-                        android:onClick="eval_question_3" />
+                        android:text="@string/q3_choice_2"/>
 
                     <RadioButton
                         android:id="@+id/question_3_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="@string/q3_choice_3"
-                        android:onClick="eval_question_3" />
+                        android:text="@string/q3_choice_3" />
                 </RadioGroup>
             </LinearLayout>
 

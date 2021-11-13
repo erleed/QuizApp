@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
             , {76, 101, 110, 111, 118, 111}     //5
             , {83, 97, 109, 115, 117, 110, 103} //6
             , {83, 111, 110, 121}               //7
-            , {0}};                             //8
+            , {0}                               //8
+    };
 
     String[] answers4 = {"chrome os", "windows", "linux", "macos", "mac os", "mac"};
 
@@ -115,10 +116,12 @@ public class MainActivity extends AppCompatActivity {
         //Check which radio button was clicked
         switch(view.getId()){
             case R.id.question_3_1:
+                if (checked)
                 q3Score = 1;
                 break;
             case R.id.question_3_2:
             case R.id.question_3_3:
+                if (checked)
                 q3Score = 0;
                 break;
         }
@@ -128,14 +131,21 @@ public class MainActivity extends AppCompatActivity {
     private int eval_question_4() {
         int q4score = 0;
         String answer = question_4.getText().toString().toLowerCase(Locale.ROOT);
-
         for (int i = 0; i < answers4.length ; i++){
             if (answers4[i].matches(answer)){
                 q4score = 1;
             }
         }
-
         return q4score;
+    }
+
+    private int eval_question_5(){
+        int q5score = 0;
+        String answer = question_5.getText().toString();
+        if ("ethernet".matches(answer.toLowerCase()))
+            q5score++;
+
+        return q5score;
     }
 
     public void submit(View view) {
@@ -144,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         score = score + eval_question_2();
         score = score + eval_question_3(question_3);
         score = score + eval_question_4();
-                result.setText("You scored " + score + " out of 6");
+        score = score + eval_question_5();
+        result.setText("You scored " + score + " out of 6");
     }
 }
