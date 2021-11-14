@@ -7,24 +7,25 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        android:padding="20dp"
+        android:scaleType="ce"
+        android:src="@drawable/comptia_logo_white_wide" />
+
     <TextView
         android:id="@+id/QuizAppBanner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
         android:background="@color/accent"
         android:fontFamily="sans-serif-thin"
         android:gravity="center"
         android:text="@string/abund_quizapp_title"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="20dp"
         android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -112,14 +113,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="@string/q3_choice_1"/>
+                        android:text="@string/q3_choice_1" />
 
                     <RadioButton
                         android:id="@+id/question_3_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="@string/q3_choice_2"/>
+                        android:text="@string/q3_choice_2" />
 
                     <RadioButton
                         android:id="@+id/question_3_3"
@@ -157,6 +158,16 @@
                 android:layout_height="wrap_content"
                 android:focusedByDefault="false"
                 android:hint="@string/q5_answer_field" />
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="@string/results_text_view"
+                android:textColor="@color/purple_700"
+                android:textSize="20sp" />
 
             <Button
                 android:layout_width="wrap_content"

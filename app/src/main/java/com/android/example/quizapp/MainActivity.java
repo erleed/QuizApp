@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -39,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
     EditText question_5;
 
     /**
-     *Answers for 1st questions.
+     * Answers for 1st questions.
      */
     int[][] answer1 = {
-              {100, 101, 108, 108}              //0
+            {100, 101, 108, 108}              //0
             , {72, 80}                          //1
             , {65, 99, 101, 114}                //2
             , {65, 112, 112, 108, 101}          //3
@@ -95,15 +96,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *Evaluate question 2
+     * Evaluate question 2
+     *
      * @return return 1 if answered correctly.
      */
     private int eval_question_2() {
         int q2Score = 0;
-        if (question_2[1].isChecked()){
+        if (question_2[1].isChecked()) {
             q2Score = q2Score + 1;
         }
-        if (question_2[3].isChecked()){
+        if (question_2[3].isChecked()) {
             q2Score = q2Score + 1;
         }
         return q2Score;
@@ -114,15 +116,15 @@ public class MainActivity extends AppCompatActivity {
         //Is teh button now checked?
         boolean checked = ((RadioButton) view).isChecked();
         //Check which radio button was clicked
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.question_3_1:
                 if (checked)
-                q3Score = 1;
+                    q3Score = 1;
                 break;
             case R.id.question_3_2:
             case R.id.question_3_3:
                 if (checked)
-                q3Score = 0;
+                    q3Score = 0;
                 break;
         }
         return q3Score;
@@ -131,30 +133,34 @@ public class MainActivity extends AppCompatActivity {
     private int eval_question_4() {
         int q4score = 0;
         String answer = question_4.getText().toString().toLowerCase(Locale.ROOT);
-        for (int i = 0; i < answers4.length ; i++){
-            if (answers4[i].matches(answer)){
+        for (int i = 0; i < answers4.length; i++) {
+            if (answers4[i].matches(answer)) {
                 q4score = 1;
             }
         }
         return q4score;
     }
 
-    private int eval_question_5(){
+    private int eval_question_5() {
         int q5score = 0;
         String answer = question_5.getText().toString();
         if ("ethernet".matches(answer.toLowerCase()))
             q5score++;
-
         return q5score;
     }
 
     public void submit(View view) {
-        int score = 0;
+        double score = 0;
         score = score + eval_question_1();
         score = score + eval_question_2();
         score = score + eval_question_3(question_3);
         score = score + eval_question_4();
         score = score + eval_question_5();
-        result.setText("You scored " + score + " out of 6");
-    }
+        score = (score/6.00) * 100.00;
+        if (score > 90)  result.setText(R.string.A_score);
+        else if (score > 80) result.setText(R.string.B_score);
+        else if (score > 66) result.setText(R.string.C_score);
+        else if (score < 66) result.setText(R.string.low_score);
+        result.setGravity(Gravity.CENTER);
+        }
 }
