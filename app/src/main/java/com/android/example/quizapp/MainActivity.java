@@ -2,6 +2,7 @@ package com.android.example.quizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -10,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -18,22 +20,27 @@ public class MainActivity extends AppCompatActivity {
      *Used to display test results
      */
     TextView result;
+
     /***
      * Name a major PC manufacturer?
      */
-    TextView question_1;
+    TextView q1MajorPCManuf;
+
     /***
      * What are examples of output devices?
      */
     CheckBox[] question_2 = new CheckBox[4];
+
     /***
      * Which is a popular PC processor manufacturer in the US.
      */
     RadioButton question_3;
+
     /***
      * What is your favorite OS?
      */
     EditText question_4;
+
     /***
      * Wired family of technologies to connect PC's in a network.
      */
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
      * Answers for 1st questions.
      */
     int[][] answer1 = {
-            {100, 101, 108, 108}              //0
+            {100, 101, 108, 108}                //0
             , {72, 80}                          //1
             , {65, 99, 101, 114}                //2
             , {65, 112, 112, 108, 101}          //3
@@ -60,9 +67,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        findViewById(R.id.QuizAppBanner).setElevation(6);
         result = findViewById(R.id.result);
-        question_1 = findViewById(R.id.question_1);
+        q1MajorPCManuf = findViewById(R.id.question_1);
         question_2[0] = findViewById(R.id.question_2_1);
         question_2[1] = findViewById(R.id.question_2_2);
         question_2[2] = findViewById(R.id.question_2_3);
@@ -72,10 +78,15 @@ public class MainActivity extends AppCompatActivity {
         question_5 = findViewById(R.id.question_5);
     }
 
+    /**
+     * Evaluate question 1.
+     *
+     * @return The number of correct responses chosen, and of type int.
+     */
     public int eval_question_1() {
-        int returnVal = 0;
+        int q1score = 0;
         answer1[8][0] = 0;
-        String q1Answer = question_1.getText().toString();
+        String q1Answer = q1MajorPCManuf.getText().toString();
         for (int i = 0; i < answer1.length - 1; i++) {
             String str = "";
             for (int j = 0; j < answer1[i].length; j++) {
@@ -83,22 +94,21 @@ public class MainActivity extends AppCompatActivity {
             }
             if (str.toLowerCase().matches(q1Answer.toLowerCase())) {
                 answer1[8][0] = 1;
-                Log.v("MainActivity", str);
                 str = null;
                 break;
             }
         }
         if (answer1[8][0] == 1) {
             answer1[8][0] = 0;
-            returnVal = 1;
+            q1score = 1;
         }
-        return returnVal;
+        return q1score;
     }
 
     /**
      * Evaluate question 2
      *
-     * @return return 1 if answered correctly.
+     * @return The number of correct responses chosen, and of type int.
      */
     private int eval_question_2() {
         int q2Score = 0;
@@ -111,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
         return q2Score;
     }
 
+    /***
+     * Evaluate question 3.
+     * @param view View parameter not in use.
+     * @return The number of correct responses chosen, and of type int.
+     */
     public int eval_question_3(View view) {
         int q3Score = 0;
         //Is teh button now checked?
@@ -130,6 +145,11 @@ public class MainActivity extends AppCompatActivity {
         return q3Score;
     }
 
+    /**
+     * Evaluate question 4.
+     *
+     * @return The number of correct responses chosen, and of type int.
+     */
     private int eval_question_4() {
         int q4score = 0;
         String answer = question_4.getText().toString().toLowerCase(Locale.ROOT);
@@ -141,6 +161,11 @@ public class MainActivity extends AppCompatActivity {
         return q4score;
     }
 
+    /**
+     * Evaluate question 5.
+     *
+     * @return The number of correct responses chosen, and of type int.
+     */
     private int eval_question_5() {
         int q5score = 0;
         String answer = question_5.getText().toString();
@@ -149,18 +174,35 @@ public class MainActivity extends AppCompatActivity {
         return q5score;
     }
 
+    /**
+     * The submit method calculates the total number of correct answers selected.
+     */
     public void submit(View view) {
-        double score = 0;
+        Context context = getApplicationContext();          //Create context variable for use in toast.
+        int duration = Toast.LENGTH_LONG;           //Capture duration long for toast message.
+        double score = 0;           //Score: variable for storing total correct answers.
         score = score + eval_question_1();
         score = score + eval_question_2();
         score = score + eval_question_3(question_3);
         score = score + eval_question_4();
         score = score + eval_question_5();
-        score = (score/6.00) * 100.00;
-        if (score > 90)  result.setText(R.string.A_score);
-        else if (score > 80) result.setText(R.string.B_score);
-        else if (score > 66) result.setText(R.string.C_score);
-        else if (score < 66) result.setText(R.string.low_score);
-        result.setGravity(Gravity.CENTER);
+        score = (score / 6.00) * 100.00;
+        if (score > 90) {           //If else if evaluating total score to send appropriate message.
+            result.setText(R.string.A_score);
+            Toast toast = Toast.makeText(context, (CharSequence) getString(R.string.A_score), duration);    //Create toast message
+            toast.show();           //Show toast message.
+        } else if (score > 80) {
+            result.setText(R.string.B_score);
+            Toast toast = Toast.makeText(context, (CharSequence) getString(R.string.B_score), duration);
+            toast.show();
+        } else if (score > 66) {
+            result.setText(R.string.C_score);
+            Toast toast = Toast.makeText(context, (CharSequence) getString(R.string.C_score), duration);
+            toast.show();
+        } else {
+            result.setText(R.string.low_score);
+            Toast toast = Toast.makeText(context, (CharSequence) getString(R.string.low_score), duration);
+            toast.show();
         }
+    }
 }

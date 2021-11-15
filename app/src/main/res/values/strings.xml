@@ -8,7 +8,7 @@
     <string name="q2_choice_3">Mouse</string>
     <string name="q2_choice_4">Printer</string>
     <string name="question_3">Which is a popular PC processor manufacturer in the US?</string>
-    <string name="question_4">What is your favorite OS?</string>
+    <string name="question_4">Name a popular operating system?</string>
     <string name="question_5">Wired family of technologies to connect computers:</string>
     <string name="q3_choice_1">AMD</string>
     <string name="q3_choice_2">VIA</string>
@@ -17,9 +17,9 @@
     <string name="q3_answer_field">Enter Operating System here</string>
     <string name="q5_answer_field">Enter technology name here</string>
     <string name="submit">Submit</string>
-    <string name="results_text_view">Answer below questions then press submit to receive a score.</string>
-    <string name="A_score">You scored an A, great job!</string>
-    <string name="B_score">You scored a B</string>
-    <string name="C_score">You scored a C</string>
+    <string name="results_text_view">Answer the above questions then press submit for score.</string>
+    <string name="A_score">✨You scored an A. Great job!🎉</string>
+    <string name="B_score">You scored a B.  Hard work pays off.🎉</string>
+    <string name="C_score">You scored a C.  You made it!🎉</string>
     <string name="low_score">You\'ve got a few wrong.  Want to try again?</string>
 </resources>
