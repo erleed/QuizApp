@@ -53,19 +53,19 @@
                 android:text="@string/question_1" />
 
             <EditText
-                android:id="@+id/question_1"
+                android:id="@+id/editTQ1_PCManuf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@color/purple_700"
                 android:focusedByDefault="false"
-                android:hint="@string/q1_answer_field" />
+                android:hint="@string/editTQ1_PCManuf_Hint" />
 
             <TextView
                 style="@style/question_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/question_2" />
+                android:text="@string/checkbQ2_OutputDevices" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,40 +73,40 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/question_2_1"
+                    android:id="@+id/checkbQ2_OutputDevices_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@string/q2_choice_1" />
+                    android:text="@string/checkbQ2_OutputDevices_1" />
 
                 <CheckBox
-                    android:id="@+id/question_2_2"
+                    android:id="@+id/checkbQ2_OutputDevices_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="@string/q2_choice_2" />
+                    android:text="@string/checkbQ2_OutputDevices_2" />
 
                 <CheckBox
-                    android:id="@+id/question_2_3"
+                    android:id="@+id/checkbQ2_OutputDevices_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="@string/q2_choice_3" />
+                    android:text="@string/checkbQ2_OutputDevices_3" />
 
                 <CheckBox
-                    android:id="@+id/question_2_4"
+                    android:id="@+id/checkbQ2_OutputDevices_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="@string/q2_choice_4" />
+                    android:text="@string/checkbQ2_OutputDevices_4" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/q3"
+                android:id="@+id/radioBQ3_PCProcessors"
                 style="@style/question_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/question_3" />
+                android:text="@string/radioBQ3_PCProcessors" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -119,21 +119,21 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/question_3_1"
+                        android:id="@+id/radioBQ3_PCProcessors_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="@string/q3_choice_1" />
+                        android:text="@string/radioBQ3_PCProcessors_1" />
 
                     <RadioButton
-                        android:id="@+id/question_3_2"
+                        android:id="@+id/radioBQ3_PCProcessors_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:text="@string/q3_choice_2" />
 
                     <RadioButton
-                        android:id="@+id/question_3_3"
+                        android:id="@+id/radioBQ3_PCProcessors_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -148,12 +148,12 @@
                 android:text="@string/question_4" />
 
             <EditText
-                android:id="@+id/question_4"
+                android:id="@+id/editTQ4_PopularOS"
                 style="@style/edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusedByDefault="false"
-                android:hint="@string/q3_answer_field" />
+                android:hint="@string/editTQ4_PopularOS_Hint" />
 
             <TextView
                 style="@style/question_margin"
@@ -162,12 +162,12 @@
                 android:text="@string/question_5" />
 
             <EditText
-                android:id="@+id/question_5"
+                android:id="@+id/editTQ5_ConnectTech"
                 style="@style/edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusedByDefault="false"
-                android:hint="@string/q5_answer_field" />
+                android:hint="@string/editTQ5_ConnectTech_Hint" />
 
             <Button
                 android:layout_width="wrap_content"
