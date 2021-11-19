@@ -4,14 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.example.quizapp.databinding.ActivityMainBinding;
 
 import java.util.Locale;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Answers for 1st questions.
      */
-    int[][] pcManufacturer = {
+    int[][] pcManufacturers = {
             {100, 101, 108, 108}                //0
             , {72, 80}                          //1
             , {65, 99, 101, 114}                //2
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
     };
 
     String[] operatingSystems = {"chrome os", "windows", "linux", "macos", "mac os", "mac"};
+
+    private ActivityMainBinding bind;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,18 @@ public class MainActivity extends AppCompatActivity {
         radioBQ3_PCProcessors = findViewById(R.id.radioBQ3_PCProcessors_1);
         editTQ4_PopularOS = findViewById(R.id.editTQ4_PopularOS);
         editTQ5_ConnectTech = findViewById(R.id.editTQ5_ConnectTech);
+
+        final Button button = (Button) bind.submitButton;
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                submit();
+            }
+        });
+
+        bind = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = bind.getRoot();
+        setContentView(view);
+
     }
 
     /**
@@ -83,23 +99,23 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return The number of correct responses chosen, and of type int.
      */
-    public int eval_question_1() {
+    public int evalQuestion1() {
         int q1score = 0;
-        pcManufacturer[8][0] = 0;
-        String q1Answer = editTQ1_PCManuf.getText().toString();
-        for (int i = 0; i < pcManufacturer.length - 1; i++) {
+        pcManufacturers[8][0] = 0;
+        String q1Answer = bind.editTQ1PCManuf.getText().toString();
+        for (int i = 0; i < pcManufacturers.length - 1; i++) {
             String str = "";
-            for (int j = 0; j < pcManufacturer[i].length; j++) {
-                str = str + Character.toString((char) pcManufacturer[i][j]);
+            for (int j = 0; j < pcManufacturers[i].length; j++) {
+                str = str + Character.toString((char) pcManufacturers[i][j]);
             }
             if (str.toLowerCase().matches(q1Answer.toLowerCase())) {
-                pcManufacturer[8][0] = 1;
+                pcManufacturers[8][0] = 1;
                 str = null;
                 break;
             }
         }
-        if (pcManufacturer[8][0] == 1) {
-            pcManufacturer[8][0] = 0;
+        if (pcManufacturers[8][0] == 1) {
+            pcManufacturers[8][0] = 0;
             q1score = 1;
         }
         return q1score;
@@ -110,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return The number of correct responses chosen, and of type int.
      */
-    private int eval_question_2() {
+    private int evalQuestion2() {
         int q2Score = 0;
         if (checkbQ2_OutputDevices[1].isChecked()) {
             q2Score = q2Score + 1;
@@ -129,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view View parameter not in use.
      * @return The number of correct responses chosen, and of type int.
      */
-    public int eval_question_3(View view) {
+    public int evalQuestion3(View view) {
         int q3Score = 0;
         //Is teh button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -153,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return The number of correct responses chosen, and of type int.
      */
-    private int eval_question_4() {
+    private int evalQuestion4() {
         int q4score = 0;
         String answer = editTQ4_PopularOS.getText().toString().toLowerCase(Locale.ROOT);
         for (int i = 0; i < operatingSystems.length; i++) {
@@ -169,26 +185,30 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return The number of correct responses chosen, and of type int.
      */
-    private int eval_question_5() {
+    private int evalQuestion5() {
         int q5score = 0;
         String answer = editTQ5_ConnectTech.getText().toString();
-        if ("ethernet".matches(answer.toLowerCase()))
+        if ("ethernet".matches(answer.toLowerCase())){
             q5score++;
+        }
         return q5score;
     }
+
+
+
 
     /**
      * The submit method calculates the total number of correct answers selected.
      */
-    public void submit(View view) {
+    public void submit() {
         Context context = getApplicationContext();          //Create context variable for use in toast.
         int duration = Toast.LENGTH_LONG;           //Capture duration long for toast message.
         double score = 0;           //Score: variable for storing total correct answers.
-        score = score + eval_question_1();
-        score = score + eval_question_2();
-        score = score + eval_question_3(radioBQ3_PCProcessors);
-        score = score + eval_question_4();
-        score = score + eval_question_5();
+        score += evalQuestion1();
+        score += evalQuestion2();
+        score += evalQuestion3(radioBQ3_PCProcessors);
+        score += evalQuestion4();
+        score += evalQuestion5();
         score = (score / 6.00) * 100.00;
         if (score > 90) {           //If else if evaluating total score to send appropriate message.
             result.setText(R.string.A_score);
